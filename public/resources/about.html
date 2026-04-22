@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EduaiTrips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+        .nav-item-active {
+            color: #16a34a;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #16a34a;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Custom Radio Button Styling */
+        .custom-radio {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+        }
+        .custom-radio::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #16a34a;
+        }
+        .custom-radio:checked::before {
+            transform: scale(1);
+        }
+        .custom-radio:checked {
+            border-color: #16a34a;
+        }
+
+        /* Modal Transitions */
+        .modal-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Tab Active State */
+        .tab-active {
+            color: #16a34a;
+            border-bottom-color: #16a34a;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col m-0 p-0">
+
+    <!-- Global Header -->
+    <header id="header" class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">EduaiTrips</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 h-full relative">
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Home</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Flights</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Hotels</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Packages</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Dashboard</a>
+                <a href="#" class="nav-item-active relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">About Us</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">T&C</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-brand-50 rounded-full text-brand-700 text-sm font-medium">
+                    <i class="fa-solid fa-headset"></i> Support
+                </div>
+                <div class="flex items-center gap-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-bold text-gray-900">Rahul Sharma</p>
+                        <p class="text-xs text-gray-500">Premium Member</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 pb-16">
+        
+        <!-- Hero Section -->
+        <section id="brand-hero" class="relative pt-20 pb-24 bg-brand-900 overflow-hidden">
+            <div class="absolute inset-0 opacity-20">
+                <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/cccfc4a9cd-ec8456d846919c142f06.png" alt="abstract green and white geometric travel pattern background" />
+            </div>
+            <div class="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">Redefining Travel for the Indian Market</h1>
+                <p class="text-lg md:text-xl text-brand-100 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    At EduaiTrips, we believe travel should be seamless, affordable, and deeply rewarding. We are building the ultimate platform to consolidate your flights, hotels, packages, and visas into one unified experience.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button class="px-8 py-4 bg-brand-500 text-white rounded-xl font-bold hover:bg-brand-600 transition-colors shadow-lg shadow-brand-900/50 flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> Explore Packages
+                    </button>
+                    <button class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-xl font-bold hover:bg-white/20 transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> Watch Our Story
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- The EduaiTrips Difference -->
+        <section id="difference" class="py-20 bg-gray-50">
+            <div class="max-w-[1440px] mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The EduaiTrips Difference</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">What sets us apart in a crowded travel landscape.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 transition-transform hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-2xl mb-6">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Consolidated Dashboard</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Manage your flights, hotels, visas, and holiday packages all from one single, intuitive dashboard. No more switching between apps.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 transition-transform hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-2xl mb-6">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Budget-Friendly Trips</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Curated travel experiences tailored for the Indian market, with dedicated filters for trips under ₹30k and ₹40k.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 transition-transform hover:-translate-y-1">
+                        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-2xl mb-6">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Integrated Visa Services</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Streamlined visa application processes built directly into your booking flow for hassle-free international travel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnerships & Trust -->
+        <section id="partnerships" class="py-20 bg-white border-y border-gray-100">
+            <div class="max-w-[1440px] mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Trusted by Industry Leaders</h2>
+                        <p class="text-gray-500 mb-8 leading-relaxed">
+                            We've partnered with top airlines, hotel chains, and payment gateways like PayU to ensure your bookings are secure, reliable, and backed by the best in the business.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 opacity-60">
+                            <!-- Logos represented by icons/text for demo -->
+                            <div class="h-12 flex items-center justify-center border border-gray-200 rounded-lg grayscale hover:grayscale-0 transition-all">
+                                <span class="font-bold text-gray-800">IndiGo</span>
+                            </div>
+                            <div class="h-12 flex items-center justify-center border border-gray-200 rounded-lg grayscale hover:grayscale-0 transition-all">
+                                <span class="font-bold text-gray-800">Taj Hotels</span>
+                            </div>
+                            <div class="h-12 flex items-center justify-center border border-gray-200 rounded-lg grayscale hover:grayscale-0 transition-all">
+                                <span class="font-bold text-gray-800">Air India</span>
+                            </div>
+                            <div class="h-12 flex items-center justify-center border border-gray-200 rounded-lg grayscale hover:grayscale-0 transition-all">
+                                <span class="font-bold text-gray-800 italic">PayU</span>
+                            </div>
+                            <div class="h-12 flex items-center justify-center border border-gray-200 rounded-lg grayscale hover:grayscale-0 transition-all">
+                                <span class="font-bold text-gray-800">MakeMyTrip</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2">
+                        <div class="bg-brand-50 rounded-[24px] p-8 border border-brand-100">
+                            <h3 class="text-2xl font-bold text-brand-900 mb-6">Support Hours</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-gray-900">Phone Support</p>
+                                            <p class="text-xs text-gray-500">24/7 Available</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-brand-600 font-bold text-sm">+91 98765 43210</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-gray-900">Email Support</p>
+                                            <p class="text-xs text-gray-500">Response within 2 hrs</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-brand-600 font-bold text-sm">support@eduaitrips.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA & Contact Footer -->
+        <section id="contact-cta" class="py-20 bg-brand-600 text-white">
+            <div class="max-w-[1440px] mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to start your journey?</h2>
+                <p class="text-brand-100 mb-10 max-w-2xl mx-auto">
+                    Join thousands of travelers who have simplified their bookings with EduaiTrips. Access your dashboard to manage existing trips or book a new adventure today.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="px-8 py-4 bg-white text-brand-700 rounded-xl font-bold hover:bg-gray-50 transition-colors shadow-lg shadow-brand-900/20 flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Back to Home
+                    </button>
+                    <button class="px-8 py-4 bg-brand-800 text-white border border-brand-500 rounded-xl font-bold hover:bg-brand-900 transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line"></i> Go to Dashboard
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-center gap-8 text-sm text-brand-100">
+                    <a href="#" class="hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-circle-question"></i> FAQs
+                    </a>
+                    <span class="w-1 h-1 bg-brand-400 rounded-full"></span>
+                    <a href="#" class="hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-file-contract"></i> Terms & Conditions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">EduaiTrips</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Your trusted partner for seamless travel experiences. Book flights, hotels, packages, and manage visas all in one place.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Domestic Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">International Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Hotels & Resorts</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Holiday Packages</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Visa Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Customer Dashboard</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">FAQs</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Cancellation Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500"></i>
+                            <span>123 Travel Hub Building, Connaught Place, New Delhi, India 110001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <span>support@eduaitrips.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© 2023 EduaiTrips. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-2xl text-gray-600"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl text-gray-600"></i>
+                    <span class="text-gray-600 font-bold text-lg italic">PayU</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

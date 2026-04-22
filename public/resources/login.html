@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduaiTrips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 flex items-center justify-center p-4 md:p-8">
+
+    <main id="auth-container" class="w-full max-w-[1200px] h-[800px] bg-white rounded-[24px] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col lg:flex-row relative">
+        
+        <!-- Left Side: Visual Showcase (Travel Vibe) -->
+        <section id="visual-showcase" class="hidden lg:flex w-1/2 bg-black relative p-12 flex-col justify-between overflow-hidden">
+            <!-- Background Image overlay -->
+            <div class="absolute inset-0 z-0 opacity-40">
+                <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover" alt="Travel Background" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+            </div>
+
+            <!-- Floating UI Elements (Ref inspired) -->
+            <div class="relative z-10 flex-1 flex items-center justify-center">
+                <div class="relative w-full max-w-md aspect-[4/3]">
+                    <!-- Main Card -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-brand-500/20 to-brand-900/40 rounded-[24px] border border-white/10 backdrop-blur-md p-6 shadow-2xl flex flex-col justify-end">
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-md border border-white/20">
+                            <h3 class="text-white font-semibold text-lg mb-1">Discover Incredible India</h3>
+                            <p class="text-white/70 text-sm">Flights, Hotels & Packages under 30k</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 1 -->
+                    <div class="absolute -top-6 right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 animate-[bounce_3s_ease-in-out_infinite]">
+                        <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">Flights Booked</p>
+                            <p class="text-lg font-bold text-gray-900">24K+</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2 -->
+                    <div class="absolute -bottom-8 -left-4 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-4">
+                        <div class="flex -space-x-3">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" class="w-8 h-8 rounded-full border-2 border-white" alt="User"/>
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" class="w-8 h-8 rounded-full border-2 border-white" alt="User"/>
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" class="w-8 h-8 rounded-full border-2 border-white" alt="User"/>
+                            <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-xs font-bold">+2k</div>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold">Happy Travelers</p>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Copy -->
+            <div class="relative z-10 mt-auto">
+                <h2 class="text-4xl font-bold text-white mb-4 leading-tight">Your gateway to<br/>seamless journeys.</h2>
+                <p class="text-white/60 text-sm max-w-sm">Join EduaiTrips and manage your flights, hotels, and visa services in one consolidated dashboard.</p>
+            </div>
+        </section>
+
+        <!-- Right Side: Login Flow -->
+        <section id="login-flow" class="w-full lg:w-1/2 h-full flex flex-col relative bg-white">
+            
+            <div class="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-[600px] w-full mx-auto">
+                
+                <!-- Logo Area -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-gray-900">EduaiTrips</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+                    <p class="text-gray-500 text-sm">Enter your mobile number to securely log in or create an account.</p>
+                </div>
+
+                <!-- Step 1: Mobile Input (Active by default in this demo) -->
+                <div id="step-mobile" class="space-y-6 block">
+                    <form onsubmit="event.preventDefault(); document.getElementById('step-mobile').classList.add('hidden'); document.getElementById('step-otp').classList.remove('hidden');" class="space-y-6">
+                        
+                        <!-- Phone Input Group -->
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-700">Mobile Number</label>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <!-- Country Code -->
+                                <div class="relative w-full sm:w-[140px] input-focus-ring border border-gray-200 rounded-xl bg-gray-50 transition-all">
+                                    <select class="w-full h-12 pl-4 pr-8 bg-transparent text-gray-900 text-sm font-medium outline-none appearance-none cursor-pointer">
+                                        <option value="+91">🇮🇳 +91 (IND)</option>
+                                        <option value="+1">🇺🇸 +1 (USA)</option>
+                                        <option value="+44">🇬🇧 +44 (UK)</option>
+                                        <option value="+971">🇦🇪 +971 (UAE)</option>
+                                    </select>
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </div>
+                                </div>
+                                <!-- Number Input -->
+                                <div class="relative flex-1 input-focus-ring border border-gray-200 rounded-xl bg-gray-50 transition-all">
+                                    <input type="tel" placeholder="Enter your 10-digit number" class="w-full h-12 px-4 bg-transparent text-gray-900 text-sm outline-none" required pattern="[0-9]{10}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Consent Checkbox -->
+                        <div class="flex items-start gap-3">
+                            <div class="flex items-center h-5">
+                                <input id="consent" type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer" checked>
+                            </div>
+                            <label for="consent" class="text-xs text-gray-500 cursor-pointer leading-tight">
+                                Send me booking updates, flight status, and exclusive holiday package offers via <i class="fa-brands fa-whatsapp text-green-500 mx-1"></i>WhatsApp and SMS.
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full h-12 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2">
+                            Send OTP <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative flex items-center py-4">
+                        <div class="flex-grow border-t border-gray-200"></div>
+                        <span class="flex-shrink-0 mx-4 text-gray-400 text-xs font-medium uppercase">Or continue with</span>
+                        <div class="flex-grow border-t border-gray-200"></div>
+                    </div>
+
+                    <!-- Social Logins -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="flex items-center justify-center gap-2 h-12 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
+                            <i class="fa-brands fa-google text-red-500"></i> Google
+                        </button>
+                        <button class="flex items-center justify-center gap-2 h-12 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700">
+                            <i class="fa-brands fa-apple text-black"></i> Apple
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: OTP Verification (Hidden by default) -->
+                <div id="step-otp" class="space-y-6 hidden">
+                    <div class="bg-gray-50 rounded-xl p-4 flex items-center justify-between mb-6 border border-gray-100">
+                        <div>
+                            <p class="text-xs text-gray-500">OTP sent to</p>
+                            <p class="text-sm font-semibold text-gray-900">+91 98765 43210</p>
+                        </div>
+                        <button onclick="document.getElementById('step-otp').classList.add('hidden'); document.getElementById('step-mobile').classList.remove('hidden');" class="text-xs font-medium text-brand-600 hover:text-brand-700">Change</button>
+                    </div>
+
+                    <form class="space-y-8">
+                        <div class="space-y-3">
+                            <label class="text-sm font-medium text-gray-700">Enter 6-digit OTP</label>
+                            <div class="flex gap-2 sm:gap-3 justify-between">
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                                <input type="text" maxlength="1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border border-gray-200 rounded-xl bg-gray-50 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all" />
+                            </div>
+                        </div>
+
+                        <button type="button" class="w-full h-12 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-medium transition-colors flex items-center justify-center gap-2">
+                            Verify & Continue
+                        </button>
+
+                        <div class="text-center">
+                            <p class="text-sm text-gray-500">Didn't receive the code? <span class="text-gray-400 ml-1">00:59</span></p>
+                            <button type="button" class="text-sm font-medium text-gray-400 mt-2 cursor-not-allowed">Resend OTP</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Legal Footer -->
+            <div id="consent-legal-footer" class="p-8 text-center mt-auto">
+                <p class="text-xs text-gray-400">
+                    By continuing, you agree to EduaiTrips's <br/>
+                    <a href="#" class="text-gray-600 hover:text-brand-600 font-medium">Terms of Service</a> and <a href="#" class="text-gray-600 hover:text-brand-600 font-medium">Privacy Policy</a>.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Simple OTP auto-advance logic for demo
+        const inputs = document.querySelectorAll('#step-otp input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

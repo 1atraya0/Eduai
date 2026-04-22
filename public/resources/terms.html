@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - EduaiTrips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-item-active {
+            color: #16a34a;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #16a34a;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col m-0 p-0">
+
+    <!-- Global Header -->
+    <header id="header" class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">EduaiTrips</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 h-full relative">
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Home</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Flights</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Hotels</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Packages</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Dashboard</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">About Us</a>
+                <a href="#" class="nav-item-active relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">T&C</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-brand-50 rounded-full text-brand-700 text-sm font-medium">
+                    <i class="fa-solid fa-headset"></i> Support
+                </div>
+                <div class="flex items-center gap-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="User" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-bold text-gray-900">Rahul Sharma</p>
+                        <p class="text-xs text-gray-500">Premium Member</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 pb-16">
+        
+        <!-- Legal Header -->
+        <section id="legal-header" class="pt-16 pb-12 bg-white border-b border-gray-100">
+            <div class="max-w-[1440px] mx-auto px-6">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-50 rounded-full text-brand-600 text-sm font-semibold mb-6">
+                        <i class="fa-solid fa-scale-balanced"></i> Legal Information
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Terms & Conditions</h1>
+                    <p class="text-lg text-gray-500">Please read these terms carefully before using EduaiTrips services.</p>
+                    <p class="text-sm text-gray-400 mt-6 font-medium">Last Updated: October 15, 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-[1440px] mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12 items-start relative">
+            
+            <!-- In-page Anchor Navigation (Sidebar) -->
+            <aside class="hidden lg:block w-72 shrink-0 sticky top-28">
+                <div class="bg-white rounded-[24px] p-6 card-shadow border border-gray-100">
+                    <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Contents</h3>
+                    <nav class="space-y-1">
+                        <a href="#bookings" class="block px-4 py-2.5 text-sm font-medium text-brand-600 bg-brand-50 rounded-xl transition-colors">Bookings Policy</a>
+                        <a href="#cancellations" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Cancellations & Refunds</a>
+                        <a href="#visa" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Visa Services</a>
+                        <a href="#payment" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Payment Terms</a>
+                        <a href="#privacy" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Privacy & Data</a>
+                        <a href="#disclaimers" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Disclaimers</a>
+                        <a href="#jurisdiction" class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors">Jurisdiction</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Policy Content Modules -->
+            <div class="flex-1 space-y-12 max-w-4xl">
+                
+                <!-- Bookings Policy -->
+                <section id="bookings" class="scroll-mt-28">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-xl">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">1. Bookings Policy</h2>
+                    </div>
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 space-y-6 text-gray-600 leading-relaxed">
+                        <p>When you make a booking through EduaiTrips, you are entering into a contract directly with the travel service provider (e.g., airline, hotel, tour operator). EduaiTrips acts solely as an intermediary to facilitate these bookings.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-600 mt-1"></i>
+                                <span>All bookings are subject to availability and the specific terms and conditions of the respective service providers.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-600 mt-1"></i>
+                                <span>It is your responsibility to ensure all passenger details provided during booking match the official government-issued ID exactly.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-brand-600 mt-1"></i>
+                                <span>Confirmation emails serve as proof of booking but not necessarily as a final ticket. E-tickets and vouchers will be issued separately.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Cancellations & Refunds -->
+                <section id="cancellations" class="scroll-mt-28">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-xl">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">2. Cancellations & Refunds</h2>
+                    </div>
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 space-y-6 text-gray-600 leading-relaxed">
+                        <p>Cancellation policies vary significantly depending on the service provider, ticket type, and timing of the cancellation. EduaiTrips applies its own service fee for processing cancellations in addition to any penalties charged by the provider.</p>
+                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                            <h4 class="font-bold text-gray-900 mb-3">Standard Refund Timeline</h4>
+                            <p class="text-sm">Eligible refunds are processed back to the original payment method within 7-14 business days after receiving the refund from the respective airline or hotel partner.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Visa Services -->
+                <section id="visa" class="scroll-mt-28">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-xl">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">3. Visa Service Terms</h2>
+                    </div>
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 space-y-6 text-gray-600 leading-relaxed">
+                        <p>EduaiTrips provides visa facilitation services but does not guarantee the approval of any visa application. The final decision rests entirely with the respective embassy or consulate.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-exclamation text-brand-600 mt-1"></i>
+                                <span>Visa application fees and EduaiTrips service charges are strictly non-refundable, regardless of the application outcome.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-exclamation text-brand-600 mt-1"></i>
+                                <span>Users must provide accurate, complete, and authentic documentation as requested by the specific country's embassy.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Payment Terms -->
+                <section id="payment" class="scroll-mt-28">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 text-xl">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900">4. Payment Terms</h2>
+                    </div>
+                    <div class="bg-white rounded-[24px] p-8 card-shadow border border-gray-100 space-y-6 text-gray-600 leading-relaxed">
+                        <p>All payments on EduaiTrips are processed securely through our integrated payment gateway partner, PayU. By making a payment, you agree to their terms of service.</p>
+                        <div class="flex flex-wrap gap-4 mt-4">
+                            <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
+                                <i class="fa-brands fa-cc-visa text-xl text-gray-700"></i>
+                                <span class="text-sm font-medium text-gray-700">Credit/Debit Cards</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
+                                <i class="fa-solid fa-building-columns text-xl text-gray-700"></i>
+                                <span class="text-sm font-medium text-gray-700">Net Banking</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
+                                <i class="fa-solid fa-mobile-screen text-xl text-gray-700"></i>
+                                <span class="text-sm font-medium text-gray-700">UPI Payments</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Grievance Redressal -->
+                <section id="grievance" class="mt-16 bg-brand-900 rounded-[32px] p-8 md:p-12 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                        <i class="fa-solid fa-scale-balanced text-9xl"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">Grievance Redressal</h2>
+                        <p class="text-brand-100 mb-8 max-w-2xl leading-relaxed">
+                            We are committed to resolving your concerns promptly. If you have any grievances regarding our services, please reach out to our dedicated Grievance Officer.
+                        </p>
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-[24px] p-6 max-w-lg">
+                            <h4 class="text-lg font-bold mb-4">Contact Information</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-user text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-brand-200">Grievance Officer</p>
+                                        <p class="font-semibold">Mr. Vikram Singh</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-envelope text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-brand-200">Email Address</p>
+                                        <p class="font-semibold">grievance@eduaitrips.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                        <i class="fa-solid fa-phone text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-brand-200">Phone Number</p>
+                                        <p class="font-semibold">+91 11 4567 8900</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">EduaiTrips</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Your trusted partner for seamless travel experiences. Book flights, hotels, packages, and manage visas all in one place.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Domestic Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">International Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Hotels & Resorts</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Holiday Packages</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Visa Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Customer Dashboard</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">FAQs</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Cancellation Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500"></i>
+                            <span>123 Travel Hub Building, Connaught Place, New Delhi, India 110001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <span>support@eduaitrips.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© 2023 EduaiTrips. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-2xl text-gray-600"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl text-gray-600"></i>
+                    <span class="text-gray-600 font-bold text-lg italic">PayU</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

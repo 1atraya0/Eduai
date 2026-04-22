@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - EduaiTrips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+        .nav-item-active {
+            color: #16a34a;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #16a34a;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Drawer styling */
+        #packageDetailsDrawer {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #packageDetailsDrawer.active {
+            transform: translateX(0);
+        }
+        #drawerOverlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #drawerOverlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col m-0 p-0">
+
+    <!-- Global Header -->
+    <header id="header" class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">EduaiTrips</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 h-full relative">
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Home</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Flights</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Hotels</a>
+                <a href="#" class="nav-item-active relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Packages</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Dashboard</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">About Us</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">T&C</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-brand-50 rounded-full text-brand-700 text-sm font-medium">
+                    <i class="fa-solid fa-headset"></i> Support
+                </div>
+                <a href="#" class="flex items-center gap-2 h-10 px-5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-medium transition-colors text-sm">
+                    <i class="fa-regular fa-user"></i> Login / Signup
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 pb-16">
+        
+        <!-- Hero Search Section -->
+        <section id="hero-search" class="bg-white border-b border-gray-200 shadow-sm relative z-40">
+            <div class="max-w-[1440px] mx-auto px-6 py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Explore Holiday Packages</h1>
+                        <p class="text-gray-500 text-sm">Discover curated experiences for your next adventure</p>
+                    </div>
+                    
+                    <div class="w-full md:w-auto flex-1 max-w-2xl">
+                        <div class="bg-white rounded-full border border-gray-200 p-2 flex items-center shadow-sm focus-within:ring-2 focus-within:ring-brand-500 focus-within:border-brand-500 transition-all">
+                            <div class="pl-4 pr-2 text-gray-400">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <input type="text" placeholder="Search destinations, themes, or experiences..." class="w-full border-none focus:ring-0 text-sm text-gray-900 placeholder-gray-400 py-2 outline-none">
+                            <button class="bg-brand-600 hover:bg-brand-700 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors flex-shrink-0 ml-2">
+                                <i class="fa-solid fa-sliders"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-[1440px] mx-auto px-6 mt-10 space-y-16">
+            
+            <!-- 1. Discovery Hub (Themes) -->
+            <section id="discovery-hub">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Discovery Hub</h2>
+                    <a href="#" class="text-sm font-medium text-brand-600 hover:text-brand-700">View All Themes</a>
+                </div>
+                
+                <div class="flex overflow-x-auto gap-4 pb-4 snap-x">
+                    <!-- Theme Card 1 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/84ff7b2e69-f5223c66dbd44c02bbaa.png" alt="A stunning view of snow-capped mountains at sunrise, dramatic lighting, travel photography" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Adventure</span>
+                    </div>
+                    
+                    <!-- Theme Card 2 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5343f931ee-37b2828565a68d9b9200.png" alt="Romantic couple walking on a pristine white sand beach at sunset, Maldives style" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Honeymoon</span>
+                    </div>
+
+                    <!-- Theme Card 3 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/bf11c2f02f-cd24e9f0a1ecf170f414.png" alt="Family having fun at a theme park or resort pool, bright sunny day" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Family</span>
+                    </div>
+
+                    <!-- Theme Card 4 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/d2f030ec7c-cdd3caa7537f32a820c5.png" alt="Group of students backpacking in Europe or Southeast Asia, vibrant atmosphere" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Student Friendly</span>
+                    </div>
+                    
+                    <!-- Theme Card 5 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/7232b42d7d-38c4f2d68bee5e0eb28f.png" alt="Serene spiritual temple or wellness retreat surrounded by nature" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Wellness</span>
+                    </div>
+                    
+                    <!-- Theme Card 6 -->
+                    <div class="min-w-[140px] flex flex-col items-center gap-3 cursor-pointer group snap-start">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-brand-500 transition-all shadow-sm relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ee72f40a94-c97ec9d9c809f2052746.png" alt="Luxury resort overwater bungalow aerial view" />
+                            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 group-hover:text-brand-600 transition-colors">Luxury</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Budget Categories -->
+            <section id="budget-categories">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Trips by Budget</h2>
+                </div>
+
+                <!-- Budget Filter Pills -->
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button class="px-5 py-2.5 bg-brand-50 border border-brand-600 text-brand-700 rounded-full text-sm font-semibold shadow-sm transition-colors">
+                        Under ₹30,000
+                    </button>
+                    <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 rounded-full text-sm font-medium transition-colors">
+                        Under ₹40,000
+                    </button>
+                    <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 rounded-full text-sm font-medium transition-colors">
+                        Under ₹60,000
+                    </button>
+                    <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 rounded-full text-sm font-medium transition-colors">
+                        Premium (₹60k+)
+                    </button>
+                </div>
+
+                <!-- Budget Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Package Card 1 -->
+                    <div class="bg-white rounded-[24px] p-4 card-shadow border border-gray-100 flex flex-col cursor-pointer hover:border-brand-300 transition-all" onclick="document.getElementById('drawerOverlay').classList.add('active'); document.getElementById('packageDetailsDrawer').classList.add('active');">
+                        <div class="w-full h-48 rounded-[16px] overflow-hidden mb-4 relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5d05383f45-fb0e52683f95076a93fb.png" alt="Beautiful landscape of Kerala backwaters with houseboats" />
+                            <div class="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 cursor-pointer transition-colors shadow-sm">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm">
+                                4 Nights / 5 Days
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Magical Kerala Retreat</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-1 mb-3">
+                                    <i class="fa-solid fa-location-dot text-brand-500 text-xs"></i> Munnar, Thekkady, Alleppey
+                                </p>
+                                <div class="flex items-center gap-3 mb-4 text-xs text-gray-600">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-hotel text-gray-400"></i> Hotels</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-car text-gray-400"></i> Transfers</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-utensils text-gray-400"></i> Meals</span>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div>
+                                    <p class="text-xs text-gray-500 line-through">₹28,500</p>
+                                    <p class="text-xl font-bold text-brand-600">₹24,999<span class="text-xs text-gray-500 font-normal">/person</span></p>
+                                </div>
+                                <button class="px-4 py-2 bg-brand-50 text-brand-700 font-semibold rounded-xl text-sm hover:bg-brand-100 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Package Card 2 -->
+                    <div class="bg-white rounded-[24px] p-4 card-shadow border border-gray-100 flex flex-col cursor-pointer hover:border-brand-300 transition-all" onclick="document.getElementById('drawerOverlay').classList.add('active'); document.getElementById('packageDetailsDrawer').classList.add('active');">
+                        <div class="w-full h-48 rounded-[16px] overflow-hidden mb-4 relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/3ee3b07b1b-49f004360988599ee02a.png" alt="Scenic view of Goa beaches with palm trees and shacks" />
+                            <div class="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 cursor-pointer transition-colors shadow-sm">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm">
+                                3 Nights / 4 Days
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Goa Weekend Escape</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-1 mb-3">
+                                    <i class="fa-solid fa-location-dot text-brand-500 text-xs"></i> North Goa
+                                </p>
+                                <div class="flex items-center gap-3 mb-4 text-xs text-gray-600">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-plane text-gray-400"></i> Flights</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-hotel text-gray-400"></i> Hotels</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-martini-glass text-gray-400"></i> Activities</span>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div>
+                                    <p class="text-xs text-gray-500 line-through">₹22,000</p>
+                                    <p class="text-xl font-bold text-brand-600">₹18,500<span class="text-xs text-gray-500 font-normal">/person</span></p>
+                                </div>
+                                <button class="px-4 py-2 bg-brand-50 text-brand-700 font-semibold rounded-xl text-sm hover:bg-brand-100 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Package Card 3 -->
+                    <div class="bg-white rounded-[24px] p-4 card-shadow border border-gray-100 flex flex-col cursor-pointer hover:border-brand-300 transition-all" onclick="document.getElementById('drawerOverlay').classList.add('active'); document.getElementById('packageDetailsDrawer').classList.add('active');">
+                        <div class="w-full h-48 rounded-[16px] overflow-hidden mb-4 relative">
+                            <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/d5e97a40ad-7c0e5d3ca33fac7d995f.png" alt="Majestic view of Himalayas in Himachal Pradesh" />
+                            <div class="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 cursor-pointer transition-colors shadow-sm">
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm">
+                                5 Nights / 6 Days
+                            </div>
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">Himachal Adventure</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-1 mb-3">
+                                    <i class="fa-solid fa-location-dot text-brand-500 text-xs"></i> Shimla, Manali
+                                </p>
+                                <div class="flex items-center gap-3 mb-4 text-xs text-gray-600">
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-hotel text-gray-400"></i> Hotels</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-bus text-gray-400"></i> Volvo</span>
+                                    <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                    <span class="flex items-center gap-1"><i class="fa-solid fa-camera text-gray-400"></i> Sightseeing</span>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between mt-4 pt-4 border-t border-gray-100">
+                                <div>
+                                    <p class="text-xs text-gray-500 line-through">₹32,000</p>
+                                    <p class="text-xl font-bold text-brand-600">₹27,999<span class="text-xs text-gray-500 font-normal">/person</span></p>
+                                </div>
+                                <button class="px-4 py-2 bg-brand-50 text-brand-700 font-semibold rounded-xl text-sm hover:bg-brand-100 transition-colors">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8">
+                    <button class="px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors text-sm shadow-sm">
+                        Load More Packages
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. Visa-free Highlights -->
+            <section id="visa-free-highlights" class="bg-brand-50 -mx-6 px-6 py-16 lg:rounded-[32px] lg:mx-0">
+                <div class="max-w-[1440px] mx-auto">
+                    <div class="flex flex-col md:flex-row items-center justify-between mb-10">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-2">Visa-Free Destinations</h2>
+                            <p class="text-gray-600 text-sm">Hassle-free international travel for Indian passport holders</p>
+                        </div>
+                        <a href="#" class="mt-4 md:mt-0 px-5 py-2.5 bg-white border border-brand-200 text-brand-700 font-medium rounded-xl hover:bg-brand-100 transition-colors text-sm shadow-sm">
+                            Explore All Destinations
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Visa Free Card 1 -->
+                        <div class="bg-white rounded-[24px] overflow-hidden flex flex-col md:flex-row card-shadow group">
+                            <div class="w-full md:w-2/5 h-48 md:h-auto relative overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/5b7135b592-7a93d2487ae41640c53f.png" alt="Stunning view of Phi Phi islands in Thailand with longtail boats" />
+                                <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-passport"></i> Visa Free
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Thailand</h3>
+                                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">Experience vibrant street life, ornate temples, and stunning tropical beaches without the visa hassle.</p>
+                                    
+                                    <div class="space-y-2 mb-6">
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-calendar-check text-brand-500 w-4"></i>
+                                            <span class="font-medium">Best Season:</span> Nov to Apr
+                                        </div>
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-clock text-brand-500 w-4"></i>
+                                            <span class="font-medium">Duration:</span> Up to 30 days
+                                        </div>
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-plane-departure text-brand-500 w-4"></i>
+                                            <span class="font-medium">Direct Flights:</span> Available
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <div>
+                                        <p class="text-xs text-gray-500">Packages starting from</p>
+                                        <p class="text-lg font-bold text-brand-600">₹25,999</p>
+                                    </div>
+                                    <button class="bg-brand-600 hover:bg-brand-700 text-white font-medium py-2 px-5 rounded-xl transition-colors text-sm shadow-sm" onclick="document.getElementById('drawerOverlay').classList.add('active'); document.getElementById('packageDetailsDrawer').classList.add('active');">
+                                        View Packages
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visa Free Card 2 -->
+                        <div class="bg-white rounded-[24px] overflow-hidden flex flex-col md:flex-row card-shadow group">
+                            <div class="w-full md:w-2/5 h-48 md:h-auto relative overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/78fb3f96f4-451baeb5d7c6b7037298.png" alt="Iconic view of Bali temples or rice terraces" />
+                                <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-passport"></i> Visa on Arrival
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">Indonesia (Bali)</h3>
+                                    <p class="text-sm text-gray-600 mb-4 line-clamp-2">Discover spiritual serenity, lush rice terraces, and surf-friendly beaches with easy visa on arrival.</p>
+                                    
+                                    <div class="space-y-2 mb-6">
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-calendar-check text-brand-500 w-4"></i>
+                                            <span class="font-medium">Best Season:</span> Apr to Oct
+                                        </div>
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-clock text-brand-500 w-4"></i>
+                                            <span class="font-medium">Duration:</span> Up to 30 days
+                                        </div>
+                                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                                            <i class="fa-solid fa-file-invoice text-brand-500 w-4"></i>
+                                            <span class="font-medium">Fee:</span> Approx ₹2,800
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <div>
+                                        <p class="text-xs text-gray-500">Packages starting from</p>
+                                        <p class="text-lg font-bold text-brand-600">₹35,500</p>
+                                    </div>
+                                    <button class="bg-brand-600 hover:bg-brand-700 text-white font-medium py-2 px-5 rounded-xl transition-colors text-sm shadow-sm" onclick="document.getElementById('drawerOverlay').classList.add('active'); document.getElementById('packageDetailsDrawer').classList.add('active');">
+                                        View Packages
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Package Details Drawer (Slide-over) -->
+    <div id="drawerOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]" onclick="this.classList.remove('active'); document.getElementById('packageDetailsDrawer').classList.remove('active');"></div>
+    
+    <div id="packageDetailsDrawer" class="fixed top-0 right-0 h-full w-full max-w-xl bg-white shadow-2xl z-[101] flex flex-col overflow-hidden">
+        <!-- Drawer Header -->
+        <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-white z-10">
+            <h3 class="text-lg font-bold text-gray-900">Package Details</h3>
+            <button class="text-gray-400 hover:text-gray-600 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100" onclick="document.getElementById('drawerOverlay').classList.remove('active'); document.getElementById('packageDetailsDrawer').classList.remove('active');">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Content -->
+        <div class="flex-1 overflow-y-auto">
+            <!-- Hero Image -->
+            <div class="h-64 relative">
+                <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ec1e0b7881-b8ec20eddc760bee9e15.png" alt="Beautiful landscape of Altai mountains in Mongolia, wide shot" />
+                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <div class="bg-brand-500 text-white text-xs font-bold px-2 py-1 rounded-md inline-block mb-2">BEST SELLER</div>
+                    <h2 class="text-2xl font-bold text-white mb-1">Altai Mountain Expedition</h2>
+                    <p class="text-gray-200 text-sm flex items-center gap-1">
+                        <i class="fa-solid fa-location-dot"></i> Mongolia
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-8">
+                <!-- Overview -->
+                <section>
+                    <h4 class="text-lg font-bold text-gray-900 mb-3">Trip Overview</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Experience the first self-drive 4x4 trip through Mongolia that takes you and your friends to incredible places along our favourite routes. Discover nomadic culture, vast steppes, and the rugged beauty of the Altai Mountains.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
+                            <p class="text-xs text-gray-500 mb-1">Duration</p>
+                            <p class="text-sm font-semibold text-gray-900">22 days</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
+                            <p class="text-xs text-gray-500 mb-1">Distance</p>
+                            <p class="text-sm font-semibold text-gray-900">5,000 kilometers</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Itinerary Highlights -->
+                <section>
+                    <h4 class="text-lg font-bold text-gray-900 mb-4">Itinerary Highlights</h4>
+                    <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+                        
+                        <!-- Day 1 -->
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-100 text-brand-600 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-auto">
+                                <span class="text-sm font-bold">1</span>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-gray-900 text-sm">Arrival in Ulaanbaatar</h5>
+                                </div>
+                                <p class="text-xs text-gray-600">Airport pickup, welcome dinner, and briefing.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Day 2-5 -->
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-100 text-gray-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 ml-0 md:ml-auto">
+                                <span class="text-sm font-bold"><i class="fa-solid fa-car"></i></span>
+                            </div>
+                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h5 class="font-bold text-gray-900 text-sm">Gobi Desert Drive</h5>
+                                </div>
+                                <p class="text-xs text-gray-600">4x4 driving through dunes, visiting nomadic families.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="w-full mt-4 py-2 text-sm font-medium text-brand-600 hover:text-brand-700 bg-brand-50 rounded-xl transition-colors">
+                        View Full Itinerary
+                    </button>
+                </section>
+
+                <!-- Inclusions / Exclusions -->
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-green-500"></i> What's Included
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 text-xs"></i> Fully equipped 4x4 vehicle</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 text-xs"></i> All accommodations (Ger camps & hotels)</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 text-xs"></i> 3 meals a day</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-green-500 mt-1 text-xs"></i> English speaking guide</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-xmark text-red-500"></i> What's Excluded
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-400 mt-1 text-xs"></i> International flights</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-400 mt-1 text-xs"></i> Visa fees</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-400 mt-1 text-xs"></i> Travel insurance</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-400 mt-1 text-xs"></i> Personal expenses</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Drawer Footer (Sticky CTA) -->
+        <div class="border-t border-gray-200 p-6 bg-white z-10 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <p class="text-xs text-gray-500">Total Price (per person)</p>
+                    <p class="text-2xl font-bold text-brand-600">₹1,45,000</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-green-600 font-medium flex items-center gap-1 justify-end">
+                        <i class="fa-solid fa-tag"></i> 10% Off Applied
+                    </p>
+                    <p class="text-xs text-gray-500">+ Taxes & Fees</p>
+                </div>
+            </div>
+            <button class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-6 rounded-xl transition-colors shadow-lg text-base flex items-center justify-center gap-2">
+                Proceed to Book <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">EduaiTrips</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Your trusted partner for seamless travel experiences. Book flights, hotels, packages, and manage visas all in one place.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Domestic Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">International Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Hotels & Resorts</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Holiday Packages</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Visa Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Customer Dashboard</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">FAQs</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Cancellation Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500"></i>
+                            <span>123 Travel Hub Building, Connaught Place, New Delhi, India 110001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <span>support@eduaitrips.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© 2023 EduaiTrips. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-2xl text-gray-600"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl text-gray-600"></i>
+                    <span class="text-gray-600 font-bold text-lg italic">PayU</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

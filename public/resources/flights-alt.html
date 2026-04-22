@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        window.FontAwesomeConfig = {
+          autoReplaceSvg: 'nest'
+        };
+      </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - EduaiTrips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+        .nav-item-active {
+            color: #16a34a;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: #16a34a;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 6px;
+        }
+        .flight-card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+        .dashed-line {
+            background-image: linear-gradient(to right, #e5e7eb 50%, transparent 50%);
+            background-size: 8px 1px;
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+        /* Modal styling */
+        #hotelDetailsModal {
+            display: none;
+        }
+        #hotelDetailsModal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-900 flex flex-col m-0 p-0">
+
+    <!-- Global Header -->
+    <header id="header" class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">EduaiTrips</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 h-full relative">
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Home</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Flights</a>
+                <a href="#" class="nav-item-active relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Hotels</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Packages</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">Dashboard</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">About Us</a>
+                <a href="#" class="relative text-sm text-gray-600 hover:text-brand-600 transition-colors h-full flex items-center">T&C</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-brand-50 rounded-full text-brand-700 text-sm font-medium">
+                    <i class="fa-solid fa-headset"></i> Support
+                </div>
+                <a href="#" class="flex items-center gap-2 h-10 px-5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-medium transition-colors text-sm">
+                    <i class="fa-regular fa-user"></i> Login / Signup
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 pb-16">
+        
+        <!-- Persistent Search Bar / Edit Search -->
+        <section id="edit-search-bar" class="bg-white border-b border-gray-200 shadow-sm sticky top-20 z-40">
+            <div class="max-w-[1440px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4 flex-1">
+                    <!-- Breadcrumbs -->
+                    <div class="hidden lg:flex items-center gap-2 text-sm text-gray-500 mr-4 border-r border-gray-200 pr-4">
+                        <a href="#" class="hover:text-brand-600 transition-colors">Home</a>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        <span class="text-gray-900 font-medium">Hotels</span>
+                    </div>
+
+                    <!-- Search Summary -->
+                    <div class="flex items-center gap-4 bg-gray-50 px-4 py-2 rounded-xl border border-gray-200 flex-1 md:flex-none">
+                        <div class="flex items-center gap-3">
+                            <div class="flex flex-col">
+                                <span class="text-xs text-gray-500">Destination</span>
+                                <span class="text-sm font-semibold text-gray-900">Goa, India</span>
+                            </div>
+                        </div>
+                        <div class="w-px h-8 bg-gray-200 mx-2"></div>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-gray-500">Check-in - Check-out</span>
+                            <span class="text-sm font-semibold text-gray-900">24 Oct - 28 Oct</span>
+                        </div>
+                        <div class="w-px h-8 bg-gray-200 mx-2"></div>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-gray-500">Guests & Rooms</span>
+                            <span class="text-sm font-semibold text-gray-900">2 Adults, 1 Room</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="bg-brand-50 hover:bg-brand-100 text-brand-700 text-sm font-medium py-2.5 px-6 rounded-xl transition-colors flex items-center gap-2 border border-brand-200 whitespace-nowrap">
+                    <i class="fa-solid fa-pen"></i> Edit Search
+                </button>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <div class="max-w-[1440px] mx-auto px-6 mt-8 flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Filters -->
+            <aside id="filter-sidebar" class="w-full lg:w-72 flex-shrink-0 space-y-6">
+                <!-- Map View Toggle -->
+                <div class="bg-white rounded-[16px] border border-gray-200 p-4 flight-card-shadow relative overflow-hidden h-32 flex items-center justify-center group cursor-pointer">
+                    <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/ff0424dd7e-e2f005a498606e7ab9ae.png" alt="Stylized map showing Goa with hotel pins" />
+                    <button class="relative z-10 bg-white border border-gray-200 px-4 py-2 rounded-xl text-sm font-medium text-gray-900 shadow-sm flex items-center gap-2 group-hover:bg-brand-50 group-hover:text-brand-700 group-hover:border-brand-200 transition-colors">
+                        <i class="fa-solid fa-map"></i> View on Map
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-[16px] border border-gray-200 p-6 flight-card-shadow">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-bold text-gray-900">Filters</h3>
+                        <button class="text-sm text-brand-600 font-medium hover:text-brand-700">Clear All</button>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="mb-6 pb-6 border-b border-gray-100">
+                        <h4 class="text-sm font-semibold text-gray-900 mb-3">Price per night</h4>
+                        <div class="px-2">
+                            <input type="range" min="1000" max="25000" value="15000" class="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-xs text-gray-500">₹1,000</span>
+                                <span class="text-xs text-gray-900 font-medium">₹15,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Star Rating -->
+                    <div class="mb-6 pb-6 border-b border-gray-100">
+                        <h4 class="text-sm font-semibold text-gray-900 mb-3">Star Rating</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="px-3 py-1.5 border border-brand-500 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium flex items-center gap-1 transition-colors">
+                                5 <i class="fa-solid fa-star text-[10px]"></i>
+                            </button>
+                            <button class="px-3 py-1.5 border border-gray-200 hover:border-brand-500 hover:bg-brand-50 text-gray-700 rounded-lg text-sm font-medium flex items-center gap-1 transition-colors">
+                                4 <i class="fa-solid fa-star text-[10px]"></i>
+                            </button>
+                            <button class="px-3 py-1.5 border border-gray-200 hover:border-brand-500 hover:bg-brand-50 text-gray-700 rounded-lg text-sm font-medium flex items-center gap-1 transition-colors">
+                                3 <i class="fa-solid fa-star text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Property Type -->
+                    <div class="mb-6 pb-6 border-b border-gray-100">
+                        <h4 class="text-sm font-semibold text-gray-900 mb-3">Property Type</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" checked class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Resort</span>
+                                </div>
+                                <span class="text-xs text-gray-500">142</span>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" checked class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Hotel</span>
+                                </div>
+                                <span class="text-xs text-gray-500">89</span>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Villa</span>
+                                </div>
+                                <span class="text-xs text-gray-500">45</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-gray-900 mb-3">Popular Amenities</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Swimming Pool</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Free Breakfast</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Beachfront</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer group">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <span class="text-sm text-gray-700 group-hover:text-gray-900">Spa</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Hotel Results List -->
+            <section id="hotel-results" class="flex-1 space-y-4">
+                
+                <!-- Sort Bar -->
+                <div class="bg-white rounded-[16px] border border-gray-200 p-2 flex items-center justify-between flight-card-shadow mb-6">
+                    <div class="flex items-center gap-1 overflow-x-auto">
+                        <button class="px-4 py-2 text-sm font-medium text-brand-700 bg-brand-50 rounded-xl whitespace-nowrap">
+                            Recommended
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-xl whitespace-nowrap transition-colors">
+                            Price: Low to High
+                        </button>
+                        <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-xl whitespace-nowrap transition-colors">
+                            Guest Rating
+                        </button>
+                    </div>
+                    <div class="hidden md:flex items-center gap-2 px-4 text-sm text-gray-500 border-l border-gray-200">
+                        <span>245 Properties found</span>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 1 -->
+                <div class="bg-white rounded-[16px] border border-gray-200 flight-card-shadow overflow-hidden hover:border-brand-300 transition-colors flex flex-col md:flex-row">
+                    <!-- Image -->
+                    <div class="w-full md:w-72 h-48 md:h-auto relative">
+                        <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/541c680c9d-8fe0a42222baeca71b25.png" alt="Luxury beachfront resort in Goa with pool and palm trees" />
+                        <div class="absolute top-3 left-3 bg-white px-2 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm flex items-center gap-1">
+                            4.8 <i class="fa-solid fa-star text-brand-500 text-[10px]"></i>
+                        </div>
+                        <div class="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 cursor-pointer transition-colors shadow-sm">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div class="flex flex-col md:flex-row justify-between gap-4">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="flex text-brand-500 text-[10px]">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Resort</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1 cursor-pointer hover:text-brand-600 transition-colors" onclick="document.getElementById('hotelDetailsModal').classList.add('active')">Taj Exotica Resort & Spa</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-1 mb-3">
+                                    <i class="fa-solid fa-location-dot"></i> Benaulim, Goa <span class="text-brand-600 ml-2 text-xs cursor-pointer hover:underline">Show on map</span>
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Beachfront</span>
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Pool</span>
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Spa</span>
+                                </div>
+                            </div>
+                            
+                            <div class="text-left md:text-right flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-5">
+                                <div>
+                                    <p class="text-xs text-gray-500 line-through">₹24,500</p>
+                                    <p class="text-2xl font-bold text-brand-600">₹18,200</p>
+                                    <p class="text-xs text-gray-500 mb-1">+ ₹3,276 taxes & fees</p>
+                                    <p class="text-xs text-gray-500">Per night, 2 Adults</p>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm" onclick="document.getElementById('hotelDetailsModal').classList.add('active')">
+                                        View Rooms
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-xs font-medium text-green-600 flex items-center gap-1 bg-green-50 px-2 py-1 rounded-md">
+                                <i class="fa-solid fa-mug-hot"></i> Free Breakfast Included
+                            </span>
+                            <span class="text-xs text-gray-500">Only 3 rooms left at this price</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel Card 2 -->
+                <div class="bg-white rounded-[16px] border border-gray-200 flight-card-shadow overflow-hidden hover:border-brand-300 transition-colors flex flex-col md:flex-row">
+                    <!-- Image -->
+                    <div class="w-full md:w-72 h-48 md:h-auto relative">
+                        <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/e71af0702c-759cc608d4f113489e2c.png" alt="Modern luxury hotel room with balcony overlooking the ocean" />
+                        <div class="absolute top-3 left-3 bg-white px-2 py-1 rounded-md text-xs font-bold text-gray-900 shadow-sm flex items-center gap-1">
+                            4.5 <i class="fa-solid fa-star text-brand-500 text-[10px]"></i>
+                        </div>
+                        <div class="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 cursor-pointer transition-colors shadow-sm">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div class="flex flex-col md:flex-row justify-between gap-4">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="flex text-brand-500 text-[10px]">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Hotel</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1 cursor-pointer hover:text-brand-600 transition-colors" onclick="document.getElementById('hotelDetailsModal').classList.add('active')">W Goa</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-1 mb-3">
+                                    <i class="fa-solid fa-location-dot"></i> Vagator, Goa <span class="text-brand-600 ml-2 text-xs cursor-pointer hover:underline">Show on map</span>
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Pool</span>
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Bar</span>
+                                    <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-md">Fitness Center</span>
+                                </div>
+                            </div>
+                            
+                            <div class="text-left md:text-right flex flex-col justify-between border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-5">
+                                <div>
+                                    <p class="text-xs text-gray-500 line-through">₹18,000</p>
+                                    <p class="text-2xl font-bold text-brand-600">₹14,500</p>
+                                    <p class="text-xs text-gray-500 mb-1">+ ₹2,610 taxes & fees</p>
+                                    <p class="text-xs text-gray-500">Per night, 2 Adults</p>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm" onclick="document.getElementById('hotelDetailsModal').classList.add('active')">
+                                        View Rooms
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-xs font-medium text-green-600 flex items-center gap-1 bg-green-50 px-2 py-1 rounded-md">
+                                <i class="fa-solid fa-check-circle"></i> Free Cancellation until Oct 22
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More -->
+                <div class="flex justify-center pt-6">
+                    <button class="px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors text-sm shadow-sm">
+                        Load More Properties
+                    </button>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Hotel Details Quick View Modal -->
+    <div id="hotelDetailsModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[90vh]">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900">Taj Exotica Resort & Spa</h3>
+                    <p class="text-xs text-gray-500">Benaulim, Goa</p>
+                </div>
+                <button class="text-gray-400 hover:text-gray-600 transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100" onclick="document.getElementById('hotelDetailsModal').classList.remove('active')">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Body -->
+            <div class="overflow-y-auto flex-1">
+                <!-- Photo Gallery Grid -->
+                <div class="grid grid-cols-4 gap-2 p-6">
+                    <div class="col-span-4 md:col-span-2 row-span-2 h-64 rounded-xl overflow-hidden relative group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/9442378173-3673acaa2f2333e50aba.png" alt="Main view of luxury resort pool and facade" />
+                    </div>
+                    <div class="col-span-2 md:col-span-1 h-31 rounded-xl overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/01d4db468b-e715ed0a08dff209f640.png" alt="Luxury hotel room interior with king bed" />
+                    </div>
+                    <div class="col-span-2 md:col-span-1 h-31 rounded-xl overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/8ad6b15b24-247d335796f66d476f71.png" alt="Hotel bathroom with luxury tub" />
+                    </div>
+                    <div class="col-span-2 md:col-span-1 h-31 rounded-xl overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/bd93bc626f-76cc2b64ada197186813.png" alt="Hotel restaurant fine dining setup" />
+                    </div>
+                    <div class="col-span-2 md:col-span-1 h-31 rounded-xl overflow-hidden group relative cursor-pointer">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/bde8ea70ce-dfcb8949eae8134f5029.png" alt="Hotel spa facility" />
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <span class="text-white font-medium text-sm">+24 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room Options -->
+                <div class="px-6 pb-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-4">Available Rooms</h4>
+                    
+                    <div class="space-y-4">
+                        <!-- Room 1 -->
+                        <div class="border border-gray-200 rounded-xl p-4 flex flex-col md:flex-row gap-6 hover:border-brand-300 transition-colors">
+                            <div class="w-full md:w-48 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                                <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/4fe44b5529-5b053a33f9d9a6580eaf.png" alt="Deluxe garden view room" />
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div>
+                                        <h5 class="font-bold text-gray-900">Deluxe Garden View Room</h5>
+                                        <p class="text-xs text-gray-500 mt-1">45 sq.m • 1 King Bed • Garden View</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mb-4 mt-3">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-wifi text-gray-400"></i> Free WiFi
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-mug-hot text-gray-400"></i> Breakfast Included
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-ban text-gray-400"></i> Non-refundable
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right flex flex-col justify-end border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6 min-w-[150px]">
+                                <p class="text-2xl font-bold text-brand-600">₹18,200</p>
+                                <p class="text-xs text-gray-500 mb-3">+ ₹3,276 taxes</p>
+                                <button class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 px-4 rounded-xl transition-colors text-sm shadow-sm" onclick="window.location.href='#'">
+                                    Select Room
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Room 2 -->
+                        <div class="border border-brand-500 bg-brand-50 rounded-xl p-4 flex flex-col md:flex-row gap-6 relative">
+                            <div class="absolute -top-3 left-4 bg-brand-500 text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-sm">
+                                RECOMMENDED
+                            </div>
+                            <div class="w-full md:w-48 h-32 rounded-lg overflow-hidden flex-shrink-0 mt-2 md:mt-0">
+                                <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/d0f41fedfe-24acfb0958a9e7376fc0.png" alt="Premium sea view room with balcony" />
+                            </div>
+                            <div class="flex-1 mt-2 md:mt-0">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div>
+                                        <h5 class="font-bold text-gray-900">Premium Sea View Room</h5>
+                                        <p class="text-xs text-gray-500 mt-1">52 sq.m • 1 King Bed • Ocean View</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mb-4 mt-3">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-wifi text-gray-400"></i> Free WiFi
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i class="fa-solid fa-mug-hot text-gray-400"></i> Breakfast + Dinner
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs text-green-600 font-medium">
+                                        <i class="fa-solid fa-check-circle"></i> Free Cancellation
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right flex flex-col justify-end border-t md:border-t-0 md:border-l border-brand-200 pt-4 md:pt-0 md:pl-6 min-w-[150px]">
+                                <p class="text-2xl font-bold text-brand-600">₹24,500</p>
+                                <p class="text-xs text-gray-500 mb-3">+ ₹4,410 taxes</p>
+                                <button class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 px-4 rounded-xl transition-colors text-sm shadow-sm" onclick="window.location.href='#'">
+                                    Select Room
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white">
+                            <i class="fa-solid fa-plane"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">EduaiTrips</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Your trusted partner for seamless travel experiences. Book flights, hotels, packages, and manage visas all in one place.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition-colors">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Domestic Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">International Flights</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Hotels & Resorts</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Holiday Packages</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Visa Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Customer Dashboard</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">FAQs</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Cancellation Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand-500"></i>
+                            <span>123 Travel Hub Building, Connaught Place, New Delhi, India 110001</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand-500"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand-500"></i>
+                            <span>support@eduaitrips.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-sm">© 2023 EduaiTrips. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fa-brands fa-cc-visa text-2xl text-gray-600"></i>
+                    <i class="fa-brands fa-cc-mastercard text-2xl text-gray-600"></i>
+                    <span class="text-gray-600 font-bold text-lg italic">PayU</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
